@@ -1,43 +1,60 @@
 # VolkitaTest
 
-Punto 2 SQL
+Punto 2 SQL.
 SELECT 
 	CASE WHEN 
     --Carrier 1
-		a.carrierid = '1' AND zona ='AMBA' THEN (a.cantidadDeEnvios/c.capacity)*b.costo
+		b.carrierid = '1' AND b.zona ='AMBA' THEN (a.cantidadDeEnvios/c.capacity)*b.costo
 	END AS Carrier1_AMBA                     		
 	CASE WHEN 
-		a.carrierid = '1' AND zona ='Bs As' THEN (a.cantidadDeEnvios/c.capacity)*b.costo
+		b.carrierid = '1' AND b.zona ='Bs As' THEN (a.cantidadDeEnvios/c.capacity)*b.costo
 	END AS Carrier1_BsAs
 	CASE WHEN 
-		a.carrierid = '1' AND zona ='Resto' THEN (a.cantidadDeEnvios/c.capacity)*b.costo
-	END AS Carrier1_AMBA
+		b.carrierid = '1' AND b.zona ='Resto' THEN (a.cantidadDeEnvios/c.capacity)*b.costo
+	END AS Carrier1_Resto
 	--Carrier 2
 	CASE WHEN 
-		a.carrierid = '2' AND zona ='AMBA'  (a.cantidadDeEnvios/c.capacity)*b.costo
+		b.carrierid = '2' AND b.zona ='AMBA'  (a.cantidadDeEnvios/c.capacity)*b.costo
 	END AS Carrier2_AMBA                   
 	CASE WHEN 			  
-		a.carrierid = '2' AND zona ='Bs As' (a.cantidadDeEnvios/c.capacity)*b.costo
-	END AS Carrier2_AMBA  
+		b.carrierid = '2' AND b.zona ='Bs As' (a.cantidadDeEnvios/c.capacity)*b.costo
+	END AS Carrier2_BsAs  
 	CASE WHEN 			  
-		a.carrierid = '2' AND zona ='Resto' (a.cantidadDeEnvios/c.capacity)*b.costo
-	END AS Carrier2_AMBA
+		b.carrierid = '2' AND b.zona ='Resto' (a.cantidadDeEnvios/c.capacity)*b.costo
+	END AS Carrier2_Resto
 	--Carrier 3
 	CASE WHEN 
-		a.carrierid = '1' AND zona ='AMBA' THEN (a.cantidadDeEnvios/c.capacity)*b.costo
+		b.carrierid = '1' AND b.zona ='AMBA' THEN (a.cantidadDeEnvios/c.capacity)*b.costo
 	END AS Carrier3_AMBA
-	
-FROM  
+
+FROM
 	base.cantidad_de_envios AS a
 
 	LEFT JOIN base.costos AS b
 	ON b.zona = a.zona
 
 	LEFT JOIN base.carrier AS c
-	ON c.carrierid = a.carrierid
+	ON c.carrierid = b.carrierid
 	
 	WHERE a.mes = '1'
-	GROUP BY 1
+-----------------------
+SELECT 
+	CASE WHEN 
+    --Carrier 1
+		b.carrierid = '1' AND b.zona ='AMBA' THEN (3000000/c.capacity)*b.costo
+	END AS Carrier1_AMBA       
+
+FROM
+	base.cantidad_de_envios AS a
+
+	LEFT JOIN base.costos AS b
+	ON b.zona = a.zona
+
+	LEFT JOIN base.carrier AS c
+	ON c.carrierid = b.carrierid
+	
+	WHERE a.mes = '1'
+
 punto 3.
 
 Se esta importando desde la raiz.
